@@ -1,5 +1,5 @@
 function renderBooks() {
-  const booksWrapper = document.querySelector('.books');
+    const booksWrapper = document.querySelector('.books');
   
   const books = getBooks();
   
@@ -33,6 +33,8 @@ function renderBooks() {
 
 booksWrapper.innerHTML = booksHTML;
 }
+
+renderBooks();
 
 // FAKE DATA
 function getBooks() {
