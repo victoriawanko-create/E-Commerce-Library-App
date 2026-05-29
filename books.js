@@ -12,7 +12,6 @@ function renderBooks() {
 
     <div class="book__title">
     ${book.title}
-      Atomic Habits
     </div>
 
     <div class="book__ratings">
@@ -33,7 +32,6 @@ function renderBooks() {
 .join("");
 
 booksWrapper.innerHTML = booksHTML;
-
 }
 
 // FAKE DATA
