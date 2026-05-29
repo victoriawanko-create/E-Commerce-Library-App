@@ -3,6 +3,11 @@ function renderBooks() {
   
   const books = getBooks();
   
+  
+  if (filter === 'LOW_TO_HIGH') {
+    console.log(filter)
+  }
+
   const booksHTML = books
   .map((book) => {
     return `<div class="book">
@@ -35,7 +40,8 @@ booksWrapper.innerHTML = booksHTML;
 }
 
 function filterBooks(event) {
-  console.log(event)
+  if (event.target.value === 'LOW_TO_HIGH') {
+  }
 }
 
 renderBooks();
