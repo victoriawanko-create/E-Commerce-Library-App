@@ -23,8 +23,8 @@ function renderBooks() {
     </div>
 
     <div class="book__price">
-      <span class="book__price--normal">$${book.originalPrice}
-      </span>$${book.salePrice}
+      <span>$${book.originalPrice.toFixed(2)}
+    
     </div>
   </div>
   `;
@@ -32,6 +32,10 @@ function renderBooks() {
 .join("");
 
 booksWrapper.innerHTML = booksHTML;
+}
+
+function filterBooks(event) {
+  console.log(event)
 }
 
 renderBooks();
