@@ -1,5 +1,17 @@
   let filter = 'LOW_TO_HIGH';
 
+function ratingsHTML(rating) {
+    let ratingsHTML = "";
+  
+    for (let i = 0; i < Math.floor(rating); ++i) {
+      ratingHTML += `<i class="fas fa-star"></i>\n`;
+    }
+    if (!Number.isInteger(rating)) {
+      ratingsHTML += `<i class="fas fa-star-half-alt"></i>\n`;
+    }
+    return ratingHTML;
+}
+
  function renderBooks() {
     const booksWrapper = document.querySelector('.books');
     const books = getBooks();
@@ -42,17 +54,6 @@
 booksWrapper.innerHTML = booksHTML;
 }
 
-function ratingsHTML(rating) {
-    let ratingHTML = "";
-  
-    for (let i = 0; i < Math.floor(rating); ++i) {
-      ratingHTML += `<i class="fas fa-star"></i>\n`;
-    }
-    if (!Number.isInteger(rating)) {
-      ratingHTML += `<i class="fas fa-star-half-alt"></i>\n`;
-    }
-    return ratingHTML;
-}
     let rating = 4.5;
 
 function filterBooks(event) {
