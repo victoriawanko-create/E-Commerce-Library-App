@@ -4,12 +4,12 @@ function ratingsHTML(rating) {
     let ratingsHTML = "";
   
     for (let i = 0; i < Math.floor(rating); ++i) {
-      ratingHTML += `<i class="fas fa-star"></i>\n`;
+      ratingsHTML += `<i class="fas fa-star"></i>\n`;
     }
     if (!Number.isInteger(rating)) {
       ratingsHTML += `<i class="fas fa-star-half-alt"></i>\n`;
     }
-    return ratingHTML;
+    return ratingsHTML;
 }
 
  function renderBooks() {
@@ -39,10 +39,11 @@ function ratingsHTML(rating) {
     </div>
 
     <div class="book__ratings">
-      ${ratingHTML(book.rating)}
+      ${ratingsHTML(book.rating)}
     </div>
 
     <div class="book__price">
+      <span class="book__price--normal">$59.95</span> $14.95
       <span>$${book.originalPrice.toFixed(2)}
     
     </div>
