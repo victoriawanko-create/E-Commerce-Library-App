@@ -1,4 +1,4 @@
-  let filter = 'LOW_TO_HIGH';
+
 
 function ratingsHTML(rating) {
     let ratingsHTML = "";
@@ -12,16 +12,15 @@ function ratingsHTML(rating) {
     return ratingsHTML;
 }
 
- function renderBooks() {
+ async function renderBooks(filter) {
     const booksWrapper = document.querySelector('.books');
-    const books = getBooks();
+    const books = await getBooks();
 
     if (filter === 'LOW_TO_HIGH') {
-        console.log(filter);
-        books.sort((a, b) => a.originalPrice - b.originalPrice);
+        books.sort((a, b) => (a.salePrice || a.originalPrice) - (b.salePrice || b.originalPrice));
     }
     else if (filter === 'HIGH_TO_LOW') {
-      books.sort((a, b) => b.originalPrice - a.originalPrice);
+      books.sort((a, b) => (b.originalPrice || b.originalPrice) - (a.salePrice || a.originalPrice));
     }
     else if (filter === 'RATING') {
       books.sort((a, b) => b.rating - a.rating);
@@ -43,9 +42,7 @@ function ratingsHTML(rating) {
     </div>
 
     <div class="book__price">
-      <span class="book__price--normal">$59.95</span> $14.95
-      <span>$${book.originalPrice.toFixed(2)}
-    
+    ${priceHTML(book.originalPrice, book.salePrice)}
     </div>
   </div>
   `;
@@ -55,6 +52,15 @@ function ratingsHTML(rating) {
 booksWrapper.innerHTML = booksHTML;
 }
 
+function priceHTML(originalPrice, salePrice) {
+  if (!salePrice) {
+    return `${originalPrice.toFixed(2)}`
+  }
+  else {
+return `<span class="book__price--normal">$${originalPrice.toFixed(2)}</span> ${salePrice.toFixed(2)}`;
+}
+  }
+
     let rating = 4.5;
 
 function filterBooks(event) {
@@ -62,12 +68,16 @@ function filterBooks(event) {
   renderBooks(event.target.value);
 }
 
-
+setTimeout(() => {
+  renderBooks();
+});
 
 
 // FAKE DATA
 function getBooks() {
-  return [
+return new Promise((resolve) => {
+setTimeout(() => {
+  resolve([
     {
       id: 1,
       title: "Crack the Coding Interview",
@@ -156,5 +166,9 @@ function getBooks() {
       salePrice: null,
       rating: 4.5,
     },
-  ];
+  ]);
+  }, 1000);
+  });
 }
+
+renderBooks();
