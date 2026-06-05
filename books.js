@@ -14,6 +14,8 @@ function ratingsHTML(rating) {
 
  async function renderBooks(filter) {
     const booksWrapper = document.querySelector('.books');
+
+    document.body.classList += ' books__loading'
     const books = await getBooks();
 
     if (filter === 'LOW_TO_HIGH') {
