@@ -1,4 +1,4 @@
-
+let books;
 
 function ratingsHTML(rating) {
     let ratingsHTML = "";
@@ -14,9 +14,13 @@ function ratingsHTML(rating) {
 
  async function renderBooks(filter) {
     const booksWrapper = document.querySelector('.books');
+    booksWrapper.classList.add('books__loading')
 
-    document.body.classList += ' books__loading'
-    const books = await getBooks();
+    if (!books) {
+      books = await getBooks();
+    }
+    
+    booksWrapper.classList.remove('books__loading')
 
     if (filter === 'LOW_TO_HIGH') {
         books.sort((a, b) => (a.salePrice || a.originalPrice) - (b.salePrice || b.originalPrice));
@@ -28,9 +32,9 @@ function ratingsHTML(rating) {
       books.sort((a, b) => b.rating - a.rating);
     }
 
-    const booksHTML = books
-    .map((book) => {
-    return `<div class="book">
+    const booksHTML = books.map((book) => {
+    return `
+    <div class="book">
     <figure class="book__img--wrapper">
       <img class="book__img" src="${book.url}" alt="">
     </figure>
@@ -51,6 +55,7 @@ function ratingsHTML(rating) {
 })
 .join("");
 
+booksWrapper.classList.remove('books__loading');
 booksWrapper.innerHTML = booksHTML;
 }
 
