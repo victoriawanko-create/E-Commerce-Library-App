@@ -15,13 +15,13 @@ async function renderBooks(filter) {
         filteredBooks.sort((a, b) => (a.salePrice || a.originalPrice) - (b.salePrice || b.originalPrice));
     }
     else if (filter === 'HIGH_TO_LOW') {
-      books.sort((a, b) => (b.originalPrice || b.originalPrice) - (a.salePrice || a.originalPrice));
+      filteredBooks.sort((a, b) => (b.originalPrice || b.originalPrice) - (a.salePrice || a.originalPrice));
     }
     else if (filter === 'RATING') {
-      books.sort((a, b) => b.rating - a.rating);
+      filteredBooks.sort((a, b) => b.rating - a.rating);
     }
 
-    const booksHTML = books.map((book) => {
+    const booksHTML = filteredBooks.map((book) => {
     return `
     <div class="book">
     <figure class="book__img--wrapper">
@@ -73,7 +73,7 @@ function ratingsHTML(rating) {
     return ratingsHTML;
 }
 
-function filterBooks(event.target.value) {
+function filterBooks(event) {
   renderBooks(event.target.value);
 }
 
