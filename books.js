@@ -15,7 +15,7 @@ async function renderBooks(filter) {
         filteredBooks.sort((a, b) => (a.salePrice || a.originalPrice) - (b.salePrice || b.originalPrice));
     }
     else if (filter === 'HIGH_TO_LOW') {
-      filteredBooks.sort((a, b) => (b.originalPrice || b.originalPrice) - (a.salePrice || a.originalPrice));
+      filteredBooks.sort((a, b) => (b.salePrice || b.originalPrice) - (a.salePrice || a.originalPrice));
     }
     else if (filter === 'RATING') {
       filteredBooks.sort((a, b) => b.rating - a.rating);
